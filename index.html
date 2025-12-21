@@ -1,1 +1,102 @@
-<html><body>TEST</body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>André Santos - Software Developer</title>
+    <link
+      href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fff8ef;
+        --panel: #ffffff;
+        --muted: #5b5b5b;
+        --accent: #ff6b6b;
+      }
+      body {
+        font-family: "Press Start 2P", monospace;
+        color: #111;
+        padding: 28px;
+        line-height: 1.5;
+      }
+      .nes-container {
+        margin-bottom: 20px;
+        background: var(--panel);
+        padding: 18px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      }
+      .nes-btn {
+        margin: 5px;
+      }
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .skill {
+        margin: 5px;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      a.nes-text {
+        text-decoration: none;
+      }
+      .muted {
+        color: var(--muted);
+        font-family: "Press Start 2P", monospace;
+        font-size: 13px;
+      }
+      p {
+        font-family: "Press Start 2P", monospace;
+      }
+      .project-excerpt {
+        font-size: 13px;
+        color: #222;
+        margin-top: 6px;
+      }
+      .title {
+        font-family: "Press Start 2P", monospace;
+      }
+      .nes-list a {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nes-container with-title">
+        <p class="title">About</p>
+        <p>
+          Portugal based software engineer and PhD holder; focused on modern web
+          platforms, cloud-native APIs, testing/observability/CI pipelines,
+          cloud infrastructure, and developer-experience tooling.
+        </p>
+      </div>
+
+      <div class="nes-container with-title">
+        <p class="title">Contact</p>
+        <a href="https://x.com/acoelhosantos" class="nes-btn is-primary">X</a>
+        <a
+          href="https://www.linkedin.com/in/acoelhosantos/"
+          class="nes-btn is-success"
+          >LinkedIn</a
+        >
+        <a
+          href="https://stackoverflow.com/users/1052403/acoelhosantos"
+          class="nes-btn is-warning"
+          >Stack Overflow</a
+        >
+        <a href="https://github.com/acoelhosantos" class="nes-btn is-error"
+          >GitHub</a
+        >
+      </div>
+    </div>
+  </body>
+</html>
