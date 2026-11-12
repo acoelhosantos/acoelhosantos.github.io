@@ -1,102 +1,303 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>André Santos - Software Developer</title>
-    <link
-      href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css"
-      rel="stylesheet"
+    <title>André Santos — Nothing to see here</title>
+    <meta
+      name="description"
+      content="Nothing to see here right now. Visit André Santos' GitHub profile for developer-related experiments."
     />
+    <meta name="theme-color" content="#9bbc0f" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🕹️%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --bg: #fff8ef;
-        --panel: #ffffff;
-        --muted: #5b5b5b;
-        --accent: #ff6b6b;
+        --lightest: #9bbc0f;
+        --light: #8bac0f;
+        --dark: #306230;
+        --darkest: #0f380f;
       }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
       body {
+        margin: 0;
+      }
+
+      body {
+        background: var(--lightest);
+        color: var(--darkest);
         font-family: "Press Start 2P", monospace;
-        color: #111;
-        padding: 28px;
-        line-height: 1.5;
       }
-      .nes-container {
-        margin-bottom: 20px;
-        background: var(--panel);
-        padding: 18px;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-      }
-      .nes-btn {
-        margin: 5px;
-      }
-      .skills {
+
+      .screen {
+        position: relative;
         display: flex;
+        flex-direction: column;
+        gap: clamp(16px, 3vh, 32px);
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: clamp(14px, 3vw, 36px);
+      }
+
+      .hud {
+        font-size: clamp(7px, 1.1vw, 10px);
+        line-height: 1.9;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+
+      .hud-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .scene {
+        position: relative;
+        flex: 1;
+        min-height: 150px;
+        overflow: hidden;
+      }
+
+      .cloud {
+        position: absolute;
+        width: clamp(64px, 12vw, 120px);
+        height: auto;
+      }
+
+      .cloud g {
+        fill: var(--light);
+      }
+
+      .cloud-left {
+        top: 4%;
+        left: 6%;
+        animation: drift-left 18s ease-in-out infinite alternate;
+      }
+
+      .cloud-right {
+        top: 18%;
+        right: 8%;
+        width: clamp(80px, 16vw, 150px);
+        animation: drift-right 22s ease-in-out infinite alternate;
+      }
+
+      @keyframes drift-left {
+        to {
+          transform: translateX(-12px);
+        }
+      }
+
+      @keyframes drift-right {
+        to {
+          transform: translateX(14px);
+        }
+      }
+
+      .hills {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: min(64%, 260px);
+      }
+
+      .dialog {
+        position: relative;
+        z-index: 1;
+        width: min(680px, 100%);
+        margin-inline: auto;
+        padding: clamp(16px, 2.5vw, 26px);
+        background: var(--lightest);
+        border: 4px solid var(--darkest);
+        box-shadow:
+          0 0 0 4px var(--lightest),
+          0 0 0 8px var(--darkest);
+      }
+
+      .message {
+        margin: 0;
+        font-size: clamp(10px, 1.7vw, 14px);
+        font-weight: 400;
+        line-height: 1.9;
+        text-transform: uppercase;
+      }
+
+      .menu-link {
+        display: inline-flex;
         flex-wrap: wrap;
-      }
-      .skill {
-        margin: 5px;
-      }
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      a.nes-text {
+        align-items: center;
+        gap: 10px;
+        margin-top: 16px;
+        padding: 6px 10px;
+        color: var(--darkest);
         text-decoration: none;
+        border: 2px solid transparent;
       }
-      .muted {
-        color: var(--muted);
-        font-family: "Press Start 2P", monospace;
-        font-size: 13px;
+
+      .menu-link:hover,
+      .menu-link:focus-visible {
+        color: var(--lightest);
+        background: var(--darkest);
+        outline: none;
       }
-      p {
-        font-family: "Press Start 2P", monospace;
+
+      .cursor {
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 8px solid currentColor;
+        animation: blink 1.1s steps(1, end) infinite;
       }
-      .project-excerpt {
-        font-size: 13px;
-        color: #222;
-        margin-top: 6px;
+
+      .menu-label {
+        font-size: clamp(10px, 1.5vw, 13px);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
       }
-      .title {
-        font-family: "Press Start 2P", monospace;
+
+      .menu-url {
+        font-size: clamp(6px, 0.9vw, 8px);
+        opacity: 0.8;
       }
-      .nes-list a {
-        color: var(--accent);
+
+      .continue {
+        position: absolute;
+        right: 14px;
+        bottom: 10px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 7px solid var(--darkest);
+        animation: blink 1.1s steps(1, end) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .screen::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        background:
+          repeating-linear-gradient(
+            0deg,
+            rgba(15, 56, 15, 0.06) 0 1px,
+            transparent 1px 4px
+          ),
+          radial-gradient(
+            circle at 50% 45%,
+            transparent 55%,
+            rgba(15, 56, 15, 0.12)
+          );
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .cursor,
+        .continue,
+        .cloud {
+          animation: none;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="nes-container with-title">
-        <p class="title">About</p>
-        <p>
-          Portugal based software engineer and PhD holder; focused on modern web
-          platforms, cloud-native APIs, testing, observability, CI pipelines,
-          cloud infrastructure, and developer-experience tooling.
-        </p>
+    <main class="screen">
+      <header class="hud" aria-hidden="true">
+        <div class="hud-row">
+          <span>ANDRE x02</span>
+          <span>WORLD&nbsp;&nbsp;TIME</span>
+        </div>
+        <div class="hud-row">
+          <span>000000 x00</span>
+          <span>1-1&nbsp;&nbsp;&nbsp;999</span>
+        </div>
+      </header>
+
+      <div class="scene" aria-hidden="true">
+        <svg class="cloud cloud-left" viewBox="0 0 48 20">
+          <g>
+            <rect x="12" y="0" width="16" height="4" />
+            <rect x="8" y="4" width="28" height="4" />
+            <rect x="4" y="8" width="36" height="4" />
+            <rect x="0" y="12" width="44" height="4" />
+            <rect x="4" y="16" width="36" height="4" />
+          </g>
+        </svg>
+
+        <svg class="cloud cloud-right" viewBox="0 0 48 20">
+          <g>
+            <rect x="12" y="0" width="16" height="4" />
+            <rect x="8" y="4" width="28" height="4" />
+            <rect x="4" y="8" width="36" height="4" />
+            <rect x="0" y="12" width="44" height="4" />
+            <rect x="4" y="16" width="36" height="4" />
+          </g>
+        </svg>
+
+        <svg
+          class="hills"
+          viewBox="0 0 320 90"
+          preserveAspectRatio="none"
+          shape-rendering="crispEdges"
+        >
+          <defs>
+            <pattern
+              id="ground-dots"
+              width="16"
+              height="10"
+              patternUnits="userSpaceOnUse"
+            >
+              <rect x="2" y="1" width="4" height="2" fill="#306230" />
+              <rect x="10" y="5" width="4" height="2" fill="#0f380f" />
+              <rect x="2" y="8" width="4" height="1" fill="#306230" />
+            </pattern>
+          </defs>
+
+          <g fill="none" stroke="#306230" stroke-width="2">
+            <path
+              d="M0 70 h8 v-6 h8 v-6 h8 v-6 h8 v-6 h8 v-6 h8 v-6 h8 v-6 h8 v6 h8 v6 h8 v6 h8 v6 h8 v6 h8 v6 h8 v6"
+            />
+            <path
+              d="M180 70 h8 v-7 h8 v-7 h8 v-7 h8 v-7 h8 v-7 h8 v-7 h8 v-7 h8 v-7 h8 v7 h8 v7 h8 v7 h8 v7 h8 v7 h8 v7 h8 v7 h8 v7"
+              stroke="#0f380f"
+            />
+          </g>
+
+          <rect x="0" y="70" width="320" height="20" fill="url(#ground-dots)" />
+          <rect x="0" y="70" width="320" height="2" fill="#0f380f" />
+        </svg>
       </div>
 
-      <div class="nes-container with-title">
-        <p class="title">Contact</p>
-        <a href="https://x.com/acoelhosantos" class="nes-btn is-primary">X</a>
-        <a
-          href="https://www.linkedin.com/in/acoelhosantos/"
-          class="nes-btn is-success"
-          >LinkedIn</a
-        >
-        <a
-          href="https://stackoverflow.com/users/1052403/acoelhosantos"
-          class="nes-btn is-warning"
-          >Stack Overflow</a
-        >
-        <a href="https://github.com/acoelhosantos" class="nes-btn is-error"
-          >GitHub</a
-        >
-      </div>
-    </div>
+      <section class="dialog" aria-labelledby="message">
+        <h1 class="message" id="message">Nothing to see here right now.</h1>
+        <a class="menu-link" href="https://github.com/acoelhosantos">
+          <span class="cursor" aria-hidden="true"></span>
+          <span class="menu-label">GitHub</span>
+          <span class="menu-url">github.com/acoelhosantos</span>
+        </a>
+        <span class="continue" aria-hidden="true"></span>
+      </section>
+    </main>
   </body>
 </html>
