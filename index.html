@@ -53,7 +53,7 @@
       }
 
       .hud {
-        font-size: clamp(7px, 1.1vw, 10px);
+        font-size: clamp(8px, 1.1vw, 10px);
         line-height: 1.9;
         text-transform: uppercase;
         letter-spacing: 0.02em;
@@ -109,16 +109,41 @@
 
       .hills {
         position: absolute;
+        bottom: 22px;
+        left: 0;
+        width: 100%;
+        height: min(56%, 240px);
+      }
+
+      .hill-back {
+        stroke: var(--dark);
+      }
+
+      .hill-front {
+        stroke: var(--darkest);
+      }
+
+      .ground {
+        position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
-        height: min(64%, 260px);
+        height: 24px;
+      }
+
+      .ground .line,
+      .ground .dot-dark {
+        fill: var(--darkest);
+      }
+
+      .ground .dot-light {
+        fill: var(--dark);
       }
 
       .dialog {
         position: relative;
         z-index: 1;
-        width: min(680px, 100%);
+        width: min(680px, calc(100% - 16px));
         margin-inline: auto;
         padding: clamp(16px, 2.5vw, 26px);
         background: var(--lightest);
@@ -145,7 +170,6 @@
         padding: 6px 10px;
         color: var(--darkest);
         text-decoration: none;
-        border: 2px solid transparent;
       }
 
       .menu-link:hover,
@@ -171,8 +195,7 @@
       }
 
       .menu-url {
-        font-size: clamp(6px, 0.9vw, 8px);
-        opacity: 0.8;
+        font-size: clamp(9px, 1.1vw, 10px);
       }
 
       .continue {
@@ -235,7 +258,7 @@
       </header>
 
       <div class="scene" aria-hidden="true">
-        <svg class="cloud cloud-left" viewBox="0 0 48 20">
+        <svg class="cloud cloud-left" viewBox="0 0 48 20" shape-rendering="crispEdges">
           <g>
             <rect x="12" y="0" width="16" height="4" />
             <rect x="8" y="4" width="28" height="4" />
@@ -245,7 +268,7 @@
           </g>
         </svg>
 
-        <svg class="cloud cloud-right" viewBox="0 0 48 20">
+        <svg class="cloud cloud-right" viewBox="0 0 48 20" shape-rendering="crispEdges">
           <g>
             <rect x="12" y="0" width="16" height="4" />
             <rect x="8" y="4" width="28" height="4" />
@@ -257,35 +280,33 @@
 
         <svg
           class="hills"
-          viewBox="0 0 320 90"
+          viewBox="0 0 320 70"
           preserveAspectRatio="none"
           shape-rendering="crispEdges"
         >
-          <defs>
-            <pattern
-              id="ground-dots"
-              width="16"
-              height="10"
-              patternUnits="userSpaceOnUse"
-            >
-              <rect x="2" y="1" width="4" height="2" fill="#306230" />
-              <rect x="10" y="5" width="4" height="2" fill="#0f380f" />
-              <rect x="2" y="8" width="4" height="1" fill="#306230" />
-            </pattern>
-          </defs>
-
-          <g fill="none" stroke="#306230" stroke-width="2">
+          <g fill="none" stroke-width="3">
             <path
+              class="hill-back"
+              vector-effect="non-scaling-stroke"
               d="M0 70 h8 v-6 h8 v-6 h8 v-6 h8 v-6 h8 v-6 h8 v-6 h8 v-6 h8 v6 h8 v6 h8 v6 h8 v6 h8 v6 h8 v6 h8 v6"
             />
             <path
+              class="hill-front"
+              vector-effect="non-scaling-stroke"
               d="M180 70 h8 v-7 h8 v-7 h8 v-7 h8 v-7 h8 v-7 h8 v-7 h8 v-7 h8 v-7 h8 v7 h8 v7 h8 v7 h8 v7 h8 v7 h8 v7 h8 v7 h8 v7"
-              stroke="#0f380f"
             />
           </g>
+        </svg>
 
-          <rect x="0" y="70" width="320" height="20" fill="url(#ground-dots)" />
-          <rect x="0" y="70" width="320" height="2" fill="#0f380f" />
+        <svg class="ground" shape-rendering="crispEdges">
+          <defs>
+            <pattern id="ground-dots" width="24" height="12" patternUnits="userSpaceOnUse">
+              <rect class="dot-light" x="3" y="2" width="6" height="3" />
+              <rect class="dot-dark" x="15" y="8" width="6" height="3" />
+            </pattern>
+          </defs>
+          <rect class="line" width="100%" height="3" />
+          <rect y="3" width="100%" height="21" fill="url(#ground-dots)" />
         </svg>
       </div>
 
